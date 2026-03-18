@@ -1,0 +1,573 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Simple Blog</title>
+        <meta
+            name="description"
+            content="A modern, responsive blog frontend."
+        />
+
+        <!-- Social preview (optional) -->
+        <meta property="og:title" content="Simple Blog" />
+        <meta
+            property="og:description"
+            content="A modern, responsive blog frontend."
+        />
+        <meta property="og:type" content="website" />
+
+        <!-- Fonts: system-first; you can swap to a hosted font later -->
+        <link rel="stylesheet" href="./style.css" />
+        <script defer src="./app.js"></script>
+    </head>
+
+    <body>
+        <a class="skip-link" href="#main">Skip to content</a>
+
+        <!-- Top bar -->
+        <header class="site-header" role="banner">
+            <div class="container header-inner">
+                <a class="brand" href="#/" aria-label="Simple Blog Home">
+                    <span class="brand-mark" aria-hidden="true">SB</span>
+                    <span class="brand-text">
+                        <span class="brand-name">Simple Blog</span>
+                        <span class="brand-tagline"
+                            >Stories, notes, and ideas</span
+                        >
+                    </span>
+                </a>
+
+                <nav class="nav" aria-label="Primary">
+                    <a class="nav-link" href="#/">Home</a>
+                    <a class="nav-link" href="#/featured">Featured</a>
+                    <a class="nav-link" href="#/about">About</a>
+                </nav>
+
+                <div class="header-actions">
+                    <form
+                        class="search"
+                        role="search"
+                        aria-label="Search posts"
+                    >
+                        <label class="sr-only" for="q">Search</label>
+                        <input
+                            id="q"
+                            name="q"
+                            class="search-input"
+                            type="search"
+                            placeholder="Search posts…"
+                            autocomplete="off"
+                        />
+                        <button class="search-button" type="submit">
+                            Search
+                        </button>
+                    </form>
+
+                    <button
+                        class="icon-button"
+                        id="themeToggle"
+                        type="button"
+                        aria-label="Toggle theme"
+                    >
+                        <span class="icon-sun" aria-hidden="true">☀</span>
+                        <span class="icon-moon" aria-hidden="true">☾</span>
+                    </button>
+
+                    <button
+                        class="icon-button menu-button"
+                        id="menuToggle"
+                        type="button"
+                        aria-controls="mobileNav"
+                        aria-expanded="false"
+                    >
+                        <span aria-hidden="true">☰</span>
+                        <span class="sr-only">Open menu</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Mobile nav -->
+            <div class="mobile-nav" id="mobileNav" hidden>
+                <div class="container mobile-nav-inner">
+                    <a class="nav-link" href="#/">Home</a>
+                    <a class="nav-link" href="#/featured">Featured</a>
+                    <a class="nav-link" href="#/about">About</a>
+                </div>
+            </div>
+        </header>
+
+        <main id="main" class="site-main" role="main">
+            <!-- HERO / FEATURED -->
+            <section class="hero" aria-label="Featured post">
+                <div class="container hero-inner">
+                    <div class="hero-copy">
+                        <p class="kicker">Featured</p>
+                        <h1 class="hero-title">
+                            Designing a blog frontend that feels fast
+                        </h1>
+                        <p class="hero-subtitle">
+                            Clean typography, readable layouts, and a responsive
+                            grid—without sacrificing personality.
+                        </p>
+
+                        <div class="hero-meta">
+                            <span class="badge">UX</span>
+                            <span class="badge">Frontend</span>
+                            <span class="muted">•</span>
+                            <time datetime="2026-03-18" class="muted"
+                                >Mar 18, 2026</time
+                            >
+                            <span class="muted">•</span>
+                            <span class="muted">6 min read</span>
+                        </div>
+
+                        <div class="hero-actions">
+                            <a class="button primary" href="#/post/featured"
+                                >Read featured</a
+                            >
+                            <a class="button ghost" href="#/featured"
+                                >Browse featured</a
+                            >
+                        </div>
+                    </div>
+
+                    <div class="hero-media" aria-hidden="true">
+                        <div class="hero-card">
+                            <div class="hero-card-top">
+                                <div class="dot dot-red"></div>
+                                <div class="dot dot-yellow"></div>
+                                <div class="dot dot-green"></div>
+                            </div>
+                            <div class="hero-card-body">
+                                <div class="skeleton-line w-90"></div>
+                                <div class="skeleton-line w-70"></div>
+                                <div class="skeleton-line w-95"></div>
+                                <div class="skeleton-line w-60"></div>
+                                <div class="skeleton-pill w-40"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- CONTENT LAYOUT -->
+            <section class="content">
+                <div class="container content-inner">
+                    <!-- Main column -->
+                    <div class="main-col">
+                        <!-- Controls -->
+                        <div class="controls" aria-label="Feed controls">
+                            <div
+                                class="tabs"
+                                role="tablist"
+                                aria-label="Feed tabs"
+                            >
+                                <button
+                                    class="tab is-active"
+                                    type="button"
+                                    role="tab"
+                                    aria-selected="true"
+                                    data-tab="latest"
+                                >
+                                    Latest
+                                </button>
+                                <button
+                                    class="tab"
+                                    type="button"
+                                    role="tab"
+                                    aria-selected="false"
+                                    data-tab="popular"
+                                >
+                                    Popular
+                                </button>
+                                <button
+                                    class="tab"
+                                    type="button"
+                                    role="tab"
+                                    aria-selected="false"
+                                    data-tab="topics"
+                                >
+                                    Topics
+                                </button>
+                            </div>
+
+                            <div class="sort">
+                                <label class="sr-only" for="sort">Sort</label>
+                                <select id="sort" name="sort" class="select">
+                                    <option value="new">Newest</option>
+                                    <option value="old">Oldest</option>
+                                    <option value="read">Shortest read</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- POST GRID -->
+                        <section class="post-grid" aria-label="Post feed">
+                            <!-- Cards can be replaced/filled by app.js -->
+                            <article class="post-card" data-post-id="1">
+                                <a class="post-card-link" href="#/post/1">
+                                    <div class="post-card-header">
+                                        <span class="badge">Engineering</span>
+                                        <span class="muted">•</span>
+                                        <time
+                                            datetime="2026-03-12"
+                                            class="muted"
+                                            >Mar 12, 2026</time
+                                        >
+                                    </div>
+                                    <h2 class="post-card-title">
+                                        A simple layout system with CSS
+                                        variables
+                                    </h2>
+                                    <p class="post-card-excerpt">
+                                        Build a consistent rhythm with spacing
+                                        tokens, type scale, and a flexible
+                                        grid—no framework required.
+                                    </p>
+                                    <div class="post-card-footer">
+                                        <span class="muted">5 min read</span>
+                                        <span
+                                            class="post-card-arrow"
+                                            aria-hidden="true"
+                                            >→</span
+                                        >
+                                    </div>
+                                </a>
+                            </article>
+
+                            <article class="post-card" data-post-id="2">
+                                <a class="post-card-link" href="#/post/2">
+                                    <div class="post-card-header">
+                                        <span class="badge">Design</span>
+                                        <span class="muted">•</span>
+                                        <time
+                                            datetime="2026-03-09"
+                                            class="muted"
+                                            >Mar 9, 2026</time
+                                        >
+                                    </div>
+                                    <h2 class="post-card-title">
+                                        Typography that reads well on any screen
+                                    </h2>
+                                    <p class="post-card-excerpt">
+                                        Line-length, leading, and contrast: the
+                                        small decisions that make long-form
+                                        content effortless.
+                                    </p>
+                                    <div class="post-card-footer">
+                                        <span class="muted">7 min read</span>
+                                        <span
+                                            class="post-card-arrow"
+                                            aria-hidden="true"
+                                            >→</span
+                                        >
+                                    </div>
+                                </a>
+                            </article>
+
+                            <article class="post-card" data-post-id="3">
+                                <a class="post-card-link" href="#/post/3">
+                                    <div class="post-card-header">
+                                        <span class="badge">Product</span>
+                                        <span class="muted">•</span>
+                                        <time
+                                            datetime="2026-02-28"
+                                            class="muted"
+                                            >Feb 28, 2026</time
+                                        >
+                                    </div>
+                                    <h2 class="post-card-title">
+                                        Writing posts with a clear structure
+                                    </h2>
+                                    <p class="post-card-excerpt">
+                                        A practical outline that keeps you
+                                        focused: hook, context, steps, and
+                                        takeaway.
+                                    </p>
+                                    <div class="post-card-footer">
+                                        <span class="muted">4 min read</span>
+                                        <span
+                                            class="post-card-arrow"
+                                            aria-hidden="true"
+                                            >→</span
+                                        >
+                                    </div>
+                                </a>
+                            </article>
+
+                            <article class="post-card" data-post-id="4">
+                                <a class="post-card-link" href="#/post/4">
+                                    <div class="post-card-header">
+                                        <span class="badge">Guides</span>
+                                        <span class="muted">•</span>
+                                        <time
+                                            datetime="2026-02-15"
+                                            class="muted"
+                                            >Feb 15, 2026</time
+                                        >
+                                    </div>
+                                    <h2 class="post-card-title">
+                                        A post template you can reuse
+                                    </h2>
+                                    <p class="post-card-excerpt">
+                                        Headings, callouts, code blocks, and
+                                        footnotes—everything in one clean,
+                                        readable template.
+                                    </p>
+                                    <div class="post-card-footer">
+                                        <span class="muted">8 min read</span>
+                                        <span
+                                            class="post-card-arrow"
+                                            aria-hidden="true"
+                                            >→</span
+                                        >
+                                    </div>
+                                </a>
+                            </article>
+                        </section>
+
+                        <!-- POST VIEW SHELL (hidden until route matches) -->
+                        <section
+                            class="post-view"
+                            id="postView"
+                            aria-label="Post"
+                            hidden
+                        >
+                            <div class="post-view-top">
+                                <a class="back-link" href="#/">
+                                    <span aria-hidden="true">←</span>
+                                    Back to posts
+                                </a>
+                                <div class="post-view-actions">
+                                    <button
+                                        class="button small ghost"
+                                        type="button"
+                                        id="copyLink"
+                                    >
+                                        Copy link
+                                    </button>
+                                    <button
+                                        class="button small ghost"
+                                        type="button"
+                                        id="sharePost"
+                                    >
+                                        Share
+                                    </button>
+                                </div>
+                            </div>
+
+                            <article class="post-article">
+                                <header class="post-article-header">
+                                    <p class="kicker" id="postKicker">
+                                        Category
+                                    </p>
+                                    <h1
+                                        class="post-article-title"
+                                        id="postTitle"
+                                    >
+                                        Post title goes here
+                                    </h1>
+                                    <p
+                                        class="post-article-subtitle"
+                                        id="postSubtitle"
+                                    >
+                                        A short subtitle or summary can go here
+                                        to provide quick context before the main
+                                        content.
+                                    </p>
+
+                                    <div class="post-article-meta">
+                                        <div class="author">
+                                            <div
+                                                class="avatar"
+                                                aria-hidden="true"
+                                            >
+                                                A
+                                            </div>
+                                            <div class="author-text">
+                                                <div
+                                                    class="author-name"
+                                                    id="postAuthor"
+                                                >
+                                                    Author Name
+                                                </div>
+                                                <div class="muted">
+                                                    <time
+                                                        id="postDate"
+                                                        datetime="2026-03-18"
+                                                        >Mar 18, 2026</time
+                                                    >
+                                                    <span class="muted">•</span>
+                                                    <span id="postReadTime"
+                                                        >6 min read</span
+                                                    >
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div
+                                            class="post-tags"
+                                            id="postTags"
+                                            aria-label="Post tags"
+                                        >
+                                            <span class="badge">Tag</span>
+                                            <span class="badge">Tag</span>
+                                        </div>
+                                    </div>
+                                </header>
+
+                                <div class="prose" id="postBody">
+                                    <p>
+                                        This is the post view shell. Your
+                                        JavaScript can swap in real content here
+                                        (or render markdown).
+                                    </p>
+
+                                    <h2>Section heading</h2>
+                                    <p>
+                                        Keep paragraphs readable by controlling
+                                        line length and spacing. Use callouts
+                                        for important notes.
+                                    </p>
+
+                                    <div class="callout">
+                                        <strong>Tip:</strong> Use semantic HTML
+                                        for accessibility, then style it with
+                                        modern CSS.
+                                    </div>
+
+                                    <h3>Code block</h3>
+                                    <pre
+                                        class="code"
+                                    ><code>// Render real post content here…
+function renderPost(post) {
+  document.querySelector('#postTitle').textContent = post.title;
+}</code></pre>
+
+                                    <hr />
+
+                                    <p class="muted">
+                                        End of article. Add author bio, related
+                                        posts, and newsletter sign-up below if
+                                        you’d like.
+                                    </p>
+                                </div>
+                            </article>
+
+                            <aside class="related" aria-label="Related posts">
+                                <h2 class="section-title">Related</h2>
+                                <div class="related-list" id="relatedList">
+                                    <a class="related-item" href="#/post/2">
+                                        <span class="related-title"
+                                            >Typography that reads well on any
+                                            screen</span
+                                        >
+                                        <span class="muted">7 min read</span>
+                                    </a>
+                                    <a class="related-item" href="#/post/1">
+                                        <span class="related-title"
+                                            >A simple layout system with CSS
+                                            variables</span
+                                        >
+                                        <span class="muted">5 min read</span>
+                                    </a>
+                                </div>
+                            </aside>
+                        </section>
+                    </div>
+
+                    <!-- Sidebar -->
+                    <aside class="sidebar" aria-label="Sidebar">
+                        <section class="panel">
+                            <h2 class="panel-title">Newsletter</h2>
+                            <p class="panel-text">
+                                Get new posts in your inbox. No spam,
+                                unsubscribe anytime.
+                            </p>
+                            <form
+                                class="newsletter"
+                                aria-label="Newsletter signup"
+                            >
+                                <label class="sr-only" for="email">Email</label>
+                                <input
+                                    id="email"
+                                    name="email"
+                                    type="email"
+                                    class="input"
+                                    placeholder="you@example.com"
+                                />
+                                <button type="submit" class="button primary">
+                                    Subscribe
+                                </button>
+                            </form>
+                            <p class="fineprint muted">
+                                By subscribing, you agree to receive emails from
+                                this blog.
+                            </p>
+                        </section>
+
+                        <section class="panel">
+                            <h2 class="panel-title">Topics</h2>
+                            <div class="chips" aria-label="Topics">
+                                <a class="chip" href="#/topic/frontend"
+                                    >Frontend</a
+                                >
+                                <a class="chip" href="#/topic/design">Design</a>
+                                <a class="chip" href="#/topic/engineering"
+                                    >Engineering</a
+                                >
+                                <a class="chip" href="#/topic/product"
+                                    >Product</a
+                                >
+                                <a class="chip" href="#/topic/guides">Guides</a>
+                            </div>
+                        </section>
+
+                        <section class="panel">
+                            <h2 class="panel-title">About</h2>
+                            <p class="panel-text">
+                                This is a lightweight blog frontend shell.
+                                Connect it to your backend API and render posts
+                                dynamically.
+                            </p>
+                            <ul class="meta-list">
+                                <li>
+                                    <span class="muted">Built with</span> HTML +
+                                    CSS + JS
+                                </li>
+                                <li>
+                                    <span class="muted">Layout</span> responsive
+                                    grid
+                                </li>
+                                <li>
+                                    <span class="muted">Theme</span> light/dark
+                                </li>
+                            </ul>
+                        </section>
+                    </aside>
+                </div>
+            </section>
+        </main>
+
+        <footer class="site-footer" role="contentinfo">
+            <div class="container footer-inner">
+                <p class="muted">
+                    © <span id="year"></span> Simple Blog. All rights reserved.
+                </p>
+                <div class="footer-links">
+                    <a href="#/about" class="footer-link">About</a>
+                    <a href="#/privacy" class="footer-link">Privacy</a>
+                    <a href="#/rss" class="footer-link">RSS</a>
+                </div>
+            </div>
+        </footer>
+
+        <noscript>
+            <div class="noscript">
+                This site works best with JavaScript enabled for routing and
+                dynamic content.
+            </div>
+        </noscript>
+    </body>
+</html>
